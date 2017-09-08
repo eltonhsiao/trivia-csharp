@@ -6,22 +6,20 @@ namespace Trivia
 {
     public class Game
     {
+        private List<string> players = new List<string>();
 
+        private int[] places = new int[6];
+        private int[] purses = new int[6];
 
-        List<string> players = new List<string>();
+        private bool[] inPenaltyBox = new bool[6];
 
-        int[] places = new int[6];
-        int[] purses = new int[6];
+        private LinkedList<string> popQuestions = new LinkedList<string>();
+        private LinkedList<string> scienceQuestions = new LinkedList<string>();
+        private LinkedList<string> sportsQuestions = new LinkedList<string>();
+        private LinkedList<string> rockQuestions = new LinkedList<string>();
 
-        bool[] inPenaltyBox = new bool[6];
-
-        LinkedList<string> popQuestions = new LinkedList<string>();
-        LinkedList<string> scienceQuestions = new LinkedList<string>();
-        LinkedList<string> sportsQuestions = new LinkedList<string>();
-        LinkedList<string> rockQuestions = new LinkedList<string>();
-
-        int currentPlayer = 0;
-        bool isGettingOutOfPenaltyBox;
+        private int currentPlayer = 0;
+        private bool isGettingOutOfPenaltyBox;
 
         public Game()
         {
@@ -46,8 +44,6 @@ namespace Trivia
 
         public bool add(String playerName)
         {
-
-
             players.Add(playerName);
             places[howManyPlayers()] = 0;
             purses[howManyPlayers()] = 0;
@@ -89,11 +85,9 @@ namespace Trivia
                     Console.WriteLine(players[currentPlayer] + " is not getting out of the penalty box");
                     isGettingOutOfPenaltyBox = false;
                 }
-
             }
             else
             {
-
                 places[currentPlayer] = places[currentPlayer] + roll;
                 if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
@@ -103,7 +97,6 @@ namespace Trivia
                 Console.WriteLine("The category is " + currentCategory());
                 askQuestion();
             }
-
         }
 
         private void askQuestion()
@@ -129,7 +122,6 @@ namespace Trivia
                 rockQuestions.RemoveFirst();
             }
         }
-
 
         private String currentCategory()
         {
@@ -170,13 +162,9 @@ namespace Trivia
                     if (currentPlayer == players.Count) currentPlayer = 0;
                     return true;
                 }
-
-
-
             }
             else
             {
-
                 Console.WriteLine("Answer was correct!!!!");
                 purses[currentPlayer]++;
                 Console.WriteLine(players[currentPlayer]
@@ -203,11 +191,9 @@ namespace Trivia
             return true;
         }
 
-
         private bool didPlayerWin()
         {
             return !(purses[currentPlayer] == 6);
         }
     }
-
 }
